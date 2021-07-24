@@ -61,11 +61,12 @@ console.log(data);
 == onClick changeInnerText()(edit later)
 */
 
-// the bridge to <ul class="dogs-list"></ul>
+// anchor objects
 const dogsListAnchorElem = document.querySelector(".dogs-list");
+const mainCardAnchorElem = document.querySelector(".main__dog-section");
 
-// 1.0
-function createDogsListItems(dogs) {
+// header: create dog list buttons/navigation
+function createDogListItems(dogs) {
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i];
     const dogName = dog.name;
@@ -73,74 +74,70 @@ function createDogsListItems(dogs) {
     const listItemElem = document.createElement("li");
     listItemElem.className = "dogs-list__button";
     listItemElem.innerText = dogName;
-    listItemElem.addEventListener("click", () => {
-      //   TODO: appearOnTheMainCard()
-      console.log("clicked");
-    });
+    // TODO: on click renderDogInformation in main card
+    listItemElem.addEventListener("click", () => {});
+
     dogsListAnchorElem.append(listItemElem);
   }
 
   return dogsListAnchorElem;
 }
+createDogListItems(data);
 
-const listItemsResult = createDogsListItems(data);
-
-console.log("listItemResult: ", listItemsResult);
-
-// 2.0
-function createCardElement(dog) {
-  // the bridge to <section class="main__dog-section"></section>
-  const mainCardElem = document.querySelector(".main__dog-section");
-  const headingElem = document.querySelector(".main__dog-section h2");
-  //   TODO: figure out how to update headingElem to dogName
-  //   maybe create a updateHeadingElem() ??
-  //   const dogName = dog.name;
-
-  //   headingElem.innerText = dogName;
+// main: create dog card
+function createDogCard(dog) {
+  const headingElem = document.querySelector("h2");
+  headingElem.innerText = dog.name;
 
   const imgElem = document.createElement("img");
   imgElem.setAttribute("height", "300");
   imgElem.setAttribute("width", "400");
   const imgSrcElem = dog.image;
   imgElem.setAttribute("src", imgSrcElem);
-  mainCardElem.append(imgElem);
+  mainCardAnchorElem.append(imgElem);
 
   const divTextElem = document.createElement("div");
   divTextElem.className = "main__dog-section__desc";
-  mainCardElem.append(divTextElem);
+  mainCardAnchorElem.append(divTextElem);
 
-  const h3Elem = document.createElement("h3");
-  h3Elem.innerText = "Bio";
-  divTextElem.append(h3Elem);
+  const bioHeadingElem = document.createElement("h3");
+  bioHeadingElem.innerText = "Bio";
+  divTextElem.append(bioHeadingElem);
 
-  const bioTextElem = document.createElement("p");
-  bioTextElem.innerText = dog.bio;
-  divTextElem.append(bioTextElem);
+  const bioParagraphElem = document.createElement("p");
+  bioParagraphElem.innerText = dog.bio;
+  divTextElem.append(bioParagraphElem);
 
-  const divBtnElem = document.createElement("div");
-  divBtnElem.className = "main__dog-section__btn";
-  mainCardElem.append(divBtnElem);
+  const divBtnContainerElem = document.createElement("div");
+  divBtnContainerElem.className = "main__dog-section__btn";
+  mainCardAnchorElem.append(divBtnContainerElem);
 
-  const pElem = document.createElement("p");
-  const emElem = document.createElement("em");
-  //   TODO: figure out how to appendelements in order
-  //   emElem.innerText = "Is naughty?";
-  //   pElem.append(emElem);
-  //   pElem.innerText = "Yes!/No!";
-  //   divBtnElem.append(pElem);
+  const textElem = document.createElement("p");
+  textElem.innerHTML = `<em>Is naughty?</em>`;
+  let dogBehaves = dog.isGoodDog ? " Yes!" : " No!";
+  textElem.append(dogBehaves);
+  divBtnContainerElem.append(textElem);
 
+  // main card button container
   const buttonElem = document.createElement("button");
-  buttonElem.innerText = "Good dog/Bad dog";
-  divBtnElem.append(buttonElem);
+  buttonElem.innerText = dog.isGoodDog ? "Good dog" : "Bad dog";
 
-  console.log("em: ", emElem);
-  console.log("pelem: ", pElem);
+  // toggle between Good/Bad dog and change text between Yes!/No!
+  buttonElem.addEventListener("click", () => {
+    dog.isGoodDog = !dog.isGoodDog;
 
-  return mainCardElem;
+    textElem.innerHTML = `<em>Is naughty?</em>`;
+    dogBehaves = dog.isGoodDog ? " Yes!" : " No!";
+    textElem.append(dogBehaves);
+
+    buttonElem.innerText = dog.isGoodDog ? "Good dog" : "Bad dog";
+  });
+
+  divBtnContainerElem.append(buttonElem);
+
+  return mainCardAnchorElem;
 }
 
-const mainCardElemResult = createCardElement(data[0]);
-
-console.log("mainCardElemResult: ", mainCardElemResult);
+createDogCard(data[0]);
 
 // TODO: create function to append all listItemElem
