@@ -66,7 +66,7 @@ const dogsListAnchorElem = document.querySelector(".dogs-list");
 const mainCardAnchorElem = document.querySelector(".main__dog-section");
 
 // header: create dog list buttons/navigation
-function createDogListItems(dogs) {
+function renderDogListItems(dogs) {
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i];
     const dogName = dog.name;
@@ -82,11 +82,10 @@ function createDogListItems(dogs) {
 
   return dogsListAnchorElem;
 }
-createDogListItems(data);
+renderDogListItems(data);
 
 // main: create dog card
-function createDogCard(dog) {
-  const headingElem = document.querySelector("h2");
+function renderDogCard(dog) {
   headingElem.innerText = dog.name;
 
   const imgElem = document.createElement("img");
