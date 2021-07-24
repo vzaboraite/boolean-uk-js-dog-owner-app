@@ -99,3 +99,73 @@ function renderDogCard(dog) {
 
   return mainCardAnchorElem;
 }
+
+// anchor object of plus button
+const buttonAddAnchor = document.querySelector(".dogs-list__button--add");
+
+buttonAddAnchor.addEventListener("click", (event) => {
+  renderAddDogForm();
+});
+
+// input: -
+// output: mainCardAnchorElem
+function renderAddDogForm() {
+  mainCardAnchorElem.innerHTML = "";
+  const h2Elem = document.createElement("h2");
+  h2Elem.innerText = "Add a new Dog";
+  mainCardAnchorElem.append(h2Elem);
+
+  // create form
+  const formElem = document.createElement("form");
+  formElem.className = "form";
+  mainCardAnchorElem.append(formElem);
+
+  // first field
+  const nameLabelElem = document.createElement("label");
+  nameLabelElem.setAttribute("for", "name");
+  nameLabelElem.innerText = "Dog's name";
+  formElem.append(nameLabelElem);
+
+  const nameInputElem = document.createElement("input");
+  nameInputElem.setAttribute("type", "text");
+  nameInputElem.setAttribute("id", "name");
+  nameInputElem.setAttribute("name", "name");
+  formElem.append(nameInputElem);
+
+  // second field
+  const imgLabelElem = document.createElement("label");
+  imgLabelElem.setAttribute("for", "image");
+  imgLabelElem.innerText = "Dog's picture";
+  formElem.append(imgLabelElem);
+
+  const imgInputElem = document.createElement("input");
+  imgInputElem.setAttribute("type", "url");
+  imgInputElem.setAttribute("id", "image");
+  imgInputElem.setAttribute("name", "image");
+  formElem.append(imgInputElem);
+
+  // third field
+  const bioLabelElem = document.createElement("label");
+  bioLabelElem.setAttribute("for", "bio");
+  bioLabelElem.innerText = "Dog's bio";
+  formElem.append(bioLabelElem);
+
+  const bioTextAreaElem = document.createElement("textarea");
+  bioTextAreaElem.setAttribute("rows", "5");
+  bioTextAreaElem.setAttribute("id", "bio");
+  bioTextAreaElem.setAttribute("name", "bio");
+  formElem.append(bioTextAreaElem);
+
+  // submit button
+  const inputBtnElem = document.createElement("input");
+  inputBtnElem.setAttribute("type", "submit");
+  inputBtnElem.setAttribute("id", "submit");
+  inputBtnElem.setAttribute("name", "submit");
+  inputBtnElem.setAttribute("value", "Let's add a dog!");
+  inputBtnElem.className = "form__button";
+
+  formElem.append(inputBtnElem);
+
+  return mainCardAnchorElem;
+}
+
