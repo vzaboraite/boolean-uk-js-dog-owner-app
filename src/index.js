@@ -11,56 +11,6 @@
 ✅
  */
 
-/*
-***************PSEUDO-CODE*************
-
-1.0 bridge to:
-1.0.1 dogsListAnchorElem: <ul class="dogs-list"></ul>✅
-1.0.1 mainCardElem: <section class="main__dog-section">✅
-
-2.0 createDogsListItems(dogs):✅
-- create lisItemElem - <li>✅
--- className = "dogs-list__button"✅
--- innerText = dogName✅
--- each listItem.addEventListener("click", appearOnTheMainCard)✅
--- TODO: create appearOnTheMainCard()
-
-- input: takes an array of dogs
-- output: returns listItemElem
-
-3.0 createCardElement(dog):
-- input: a dog object
-- output: mainCardElem
-
-3.1 inside mainCardElem:
-*h2Elem: update innerText from "No dogs ??" to dogName
-
-*imgElem:✅
----setAttribute(height)✅
----setAttribute(width)✅
----setAttribute(src)✅
-
-*divTextElem:✅
----className = "main__dog-section__desc"✅
-
-**inside divTextElem:✅
----h3Elem: innerText = "Bio"✅
----bioTextElem: innerText = dog.bio✅
-
-*divBtnElem:✅
-**inside divBtnElem:
----pElem✅
-----inside pElem: 
------emElem: innetText = Is naughty?
-----pElem.append(emElem): innerText = Yes!/No!
-
----buttonElem: innerText = Good dog/Bad dog✅
-= contionals isNaughty? Yes! : No!
-= buttonElem.addEventListener("click", checkIfNaughty())
-== create checkIfNaughty()
-== onClick changeInnerText()(edit later)
-*/
-
 // anchor objects
 const dogsListAnchorElem = document.querySelector(".dogs-list");
 const mainCardAnchorElem = document.querySelector(".main__dog-section");
