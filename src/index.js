@@ -11,6 +11,15 @@
 ✅
  */
 
+/*
+***************CHALLENGE**************************
+
+- Add the behaviour to a plus button at the beginning of the top row. 
+- When clicked, it should replace the main card with a form to add a new dog to the list. 
+- You'll find a template for the form on the HTML page. 
+- Once the form is submitted, add the new dog to the beginning of the list, right next to the plus button.
+*/
+
 // anchor objects
 const dogsListAnchorElem = document.querySelector(".dogs-list");
 const mainCardAnchorElem = document.querySelector(".main__dog-section");
