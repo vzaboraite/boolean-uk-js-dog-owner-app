@@ -1,4 +1,4 @@
-console.log(data);
+// console.log(data);
 
 /*
 *************INSTRUCTIONS***************
@@ -74,8 +74,10 @@ function renderDogListItems(dogs) {
     const listItemElem = document.createElement("li");
     listItemElem.className = "dogs-list__button";
     listItemElem.innerText = dogName;
-    // TODO: on click renderDogInformation in main card
-    listItemElem.addEventListener("click", () => {});
+    listItemElem.addEventListener("click", (event) => {
+      mainCardAnchorElem.innerHTML = "";
+      renderDogCard(dog);
+    });
 
     dogsListAnchorElem.append(listItemElem);
   }
@@ -138,7 +140,3 @@ function renderDogCard(dog) {
 
   return mainCardAnchorElem;
 }
-
-createDogCard(data[0]);
-
-// TODO: create function to append all listItemElem
