@@ -86,7 +86,9 @@ renderDogListItems(data);
 
 // main: create dog card
 function renderDogCard(dog) {
+  const headingElem = document.createElement("h2");
   headingElem.innerText = dog.name;
+  mainCardAnchorElem.append(headingElem);
 
   const imgElem = document.createElement("img");
   imgElem.setAttribute("height", "300");
