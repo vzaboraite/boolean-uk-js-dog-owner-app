@@ -76,23 +76,23 @@ function renderDogCard(dog) {
 
   const textElem = document.createElement("p");
   textElem.innerHTML = `<em>Is naughty?</em>`;
-  let dogBehaves = dog.isGoodDog ? " Yes!" : " No!";
+  let dogBehaves = dog.isGoodDog ? " No!" : " Yes!";
   textElem.append(dogBehaves);
   divBtnContainerElem.append(textElem);
 
   // main card button container
   const buttonElem = document.createElement("button");
-  buttonElem.innerText = dog.isGoodDog ? "Good dog" : "Bad dog";
+  buttonElem.innerText = dog.isGoodDog ? "Bad dog" : "Good dog";
 
   // toggle between Good/Bad dog and change text between Yes!/No!
   buttonElem.addEventListener("click", () => {
     dog.isGoodDog = !dog.isGoodDog;
 
     textElem.innerHTML = `<em>Is naughty?</em>`;
-    dogBehaves = dog.isGoodDog ? " Yes!" : " No!";
+    dogBehaves = dog.isGoodDog ? " No!" : " Yes!";
     textElem.append(dogBehaves);
 
-    buttonElem.innerText = dog.isGoodDog ? "Good dog" : "Bad dog";
+    buttonElem.innerText = dog.isGoodDog ? "Bad dog" : "Good dog";
   });
 
   divBtnContainerElem.append(buttonElem);
