@@ -118,6 +118,7 @@ function renderAddDogForm() {
   // create form
   const formElem = document.createElement("form");
   formElem.className = "form";
+  formElem.addEventListener("submit", createDogObject);
   mainCardAnchorElem.append(formElem);
 
   // first field
