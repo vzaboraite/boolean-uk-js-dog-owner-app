@@ -170,4 +170,39 @@ function renderAddDogForm() {
   return mainCardAnchorElem;
 }
 
-// TODO: create and save new dog object
+function createDogObject(event) {
+  event.preventDefault();
+
+  let dog = {};
+  dog.id = getNextId();
+  dog.name = document.querySelector(".form #name").value;
+  dog.name = dog.name.charAt(0).toUpperCase() + dog.name.slice(1);
+  dog.bio = document.querySelector(".form #bio").value;
+  dog.isGoodDog = true;
+  dog.image = document.querySelector(".form #image").value;
+
+  data.push(dog);
+
+  const listItemElem = document.createElement("li");
+  listItemElem.className = "dogs-list__button";
+  listItemElem.innerText = dog.name;
+  listItemElem.addEventListener("click", (event) => {
+    mainCardAnchorElem.innerHTML = "";
+    renderDogCard(dog);
+  });
+
+  dogsListAnchorElem.insertBefore(listItemElem, buttonAddAnchor.nextSibling);
+  console.log(data);
+}
+
+function getNextId() {
+  let dogId = 0;
+  for (let i = 0; i < data.length; i++) {
+    const dog = data[i];
+    const currentId = dog.id;
+    if (currentId >= dogId) {
+      dogId = currentId + 1;
+    }
+  }
+  return dogId;
+}
