@@ -17,7 +17,7 @@
 ✅ Add the behaviour to a plus button at the beginning of the top row. 
 ✅ When clicked, it should replace the main card with a form to add a new dog to the list. 
 ✅ You'll find a template for the form on the HTML page. 
-- TODO: Once the form is submitted, add the new dog to the beginning of the list, right next to the plus button.
+✅ Once the form is submitted, add the new dog to the beginning of the list, right next to the plus button.
 */
 
 // anchor objects
@@ -25,19 +25,29 @@ const dogsListAnchorElem = document.querySelector(".dogs-list");
 const mainCardAnchorElem = document.querySelector(".main__dog-section");
 
 // header: create dog list buttons/navigation
+// input: dog object
+// output: listItemElem / button with dog name
+function createDogListItemElement(dog) {
+  const listItemElem = document.createElement("li");
+  listItemElem.className = "dogs-list__button";
+  listItemElem.innerText = dog.name;
+  // when the card is clicked, it changes heading text to the dog name and renders dog card in the main page
+  listItemElem.addEventListener("click", (event) => {
+    // set mainCardAnchorElem to empty string, therefore it could append new h2 heading element
+    mainCardAnchorElem.innerHTML = "";
+    renderDogCard(dog);
+  });
+
+  return listItemElem;
+}
+
+// header: render dog list button
+// input: dogs array
+// output: dogsListAnchorElem / buttons with dog names in the header of html
 function renderDogListItems(dogs) {
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i];
-    const dogName = dog.name;
-
-    const listItemElem = document.createElement("li");
-    listItemElem.className = "dogs-list__button";
-    listItemElem.innerText = dogName;
-    listItemElem.addEventListener("click", (event) => {
-      mainCardAnchorElem.innerHTML = "";
-      renderDogCard(dog);
-    });
-
+    const listItemElem = createDogListItemElement(dog);
     dogsListAnchorElem.append(listItemElem);
   }
 
@@ -46,6 +56,8 @@ function renderDogListItems(dogs) {
 renderDogListItems(data);
 
 // main: create dog card
+// input: dog object
+// output: mainCardAnchorElem / the main dog card
 function renderDogCard(dog) {
   const headingElem = document.createElement("h2");
   headingElem.innerText = dog.name;
@@ -108,8 +120,9 @@ buttonAddAnchor.addEventListener("click", (event) => {
 });
 
 // input: -
-// output: mainCardAnchorElem
+// output: mainCardAnchorElem / form to add new dog
 function renderAddDogForm() {
+  // set mainCardAnchorElem to empty string, therefore it could append new h2 heading element
   mainCardAnchorElem.innerHTML = "";
   const h2Elem = document.createElement("h2");
   h2Elem.innerText = "Add a new Dog";
@@ -170,6 +183,8 @@ function renderAddDogForm() {
   return mainCardAnchorElem;
 }
 
+// input: event got from form eventListener (formElem.addEventListener("submit", createDogObject);)
+// output: -
 function createDogObject(event) {
   event.preventDefault();
 
@@ -182,19 +197,15 @@ function createDogObject(event) {
   dog.image = document.querySelector(".form #image").value;
 
   data.push(dog);
-
-  const listItemElem = document.createElement("li");
-  listItemElem.className = "dogs-list__button";
-  listItemElem.innerText = dog.name;
-  listItemElem.addEventListener("click", (event) => {
-    mainCardAnchorElem.innerHTML = "";
-    renderDogCard(dog);
-  });
-
+  // create new dog button
+  const listItemElem = createDogListItemElement(dog);
+  // add new dog button between plus button and dog button next to it.
   dogsListAnchorElem.insertBefore(listItemElem, buttonAddAnchor.nextSibling);
-  console.log(data);
 }
 
+// function generates a new dog id, that is passed to createDogObject().
+// input: -
+// output: dogId
 function getNextId() {
   let dogId = 0;
   for (let i = 0; i < data.length; i++) {
