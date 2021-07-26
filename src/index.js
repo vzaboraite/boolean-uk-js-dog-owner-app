@@ -50,8 +50,6 @@ function renderDogListItems(dogs) {
     const listItemElem = createDogListItemElement(dog);
     dogsListAnchorElem.append(listItemElem);
   }
-
-  return dogsListAnchorElem;
 }
 renderDogListItems(data);
 
